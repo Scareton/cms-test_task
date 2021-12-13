@@ -10,7 +10,17 @@ export default new Vuex.Store({
   state() {
     return {
       tablePage: 1,
-    }
+    };
+  },
+  actions: {
+    createToast(args, { text, title }) {
+      console.log(text, title);
+      this.$app.$root.$bvToast.toast(text, {
+        title: title,
+        autoHideDelay: 5000,
+        toaster: "b-toaster-bottom-right",
+      });
+    },
   },
   modules: {
     clients: clientsModule,

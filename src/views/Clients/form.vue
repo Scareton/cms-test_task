@@ -2,20 +2,10 @@
   <div class="client p-2 mt-sm-4 mx-auto">
     <b-card v-if="client" :header="`Клиент #${client.id}`">
       <div class="d-flex flex-sm-row flex-column flex-gap-2">
-        <b-form-group
-          class="flex-fill"
-          label="ФИО"
-          label-for="name"
-          label-align="left"
-        >
+        <b-form-group class="flex-fill" label="ФИО" label-for="name" label-align="left">
           <b-form-input id="name" v-model="client.name"></b-form-input>
         </b-form-group>
-        <b-form-group
-          class="flex-fill"
-          label="Менеджер"
-          label-for="manager"
-          label-align="left"
-        >
+        <b-form-group class="flex-fill" label="Менеджер" label-for="manager" label-align="left">
           <manager-select :selected.sync="client.manager" />
         </b-form-group>
       </div>
@@ -59,6 +49,10 @@ export default {
     },
     save() {
       this.$store.dispatch("clients/update", this.client);
+      this.$store.dispatch("createToast", {
+        title: "Успешно",
+        text: `Клиент #${this.client.id} сохранён`,
+      });
       this.$router.push("/");
     },
   },
