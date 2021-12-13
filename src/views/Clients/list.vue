@@ -21,6 +21,7 @@
         @filtered="onFiltered"
         @row-clicked="clickItem"
         responsive
+        :filter-ignored-fields="searchIgnoredFields"
       >
         <template #cell(photo)="data">
           <b-avatar :src="data.item.photo"></b-avatar>
@@ -62,6 +63,7 @@ export default {
         { key: "name", label: "ФИО", sortable: true },
         { key: "manager", label: "Менеджер", sortable: true },
       ],
+      searchIgnoredFields: ["photo"],
     };
   },
   computed: {
