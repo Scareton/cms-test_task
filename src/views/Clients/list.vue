@@ -11,6 +11,8 @@ export default {
   name: "ClientsList",
   data() {
     return {
+      offset: 0,
+      limit: 10,
       fields: [
         { key: "id", label: "#" },
         { key: "name", label: "ФИО" },
@@ -20,7 +22,10 @@ export default {
   },
   computed: {
     clientsList() {
-      return this.$store.getters["clients/listWithManagers"];
+      return this.$store.getters["clients/listWithManagers"](
+        this.offset,
+        this.limit
+      );
     },
   },
 };
