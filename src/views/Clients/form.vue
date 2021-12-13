@@ -3,9 +3,7 @@
     <b-card v-if="client" :header="`Клиент #${client.id}`">
       <!-- Основная информация -->
       <div class="d-flex flex-sm-row flex-column flex-gap-2">
-        <b-form-group class="flex-fill" label="ФИО" label-for="name" label-align="left">
-          <b-form-input id="name" v-model="client.name"></b-form-input>
-        </b-form-group>
+        <name-input :value.sync="client.name" :state.sync="nameState" />
         <b-form-group class="flex-fill" label="Менеджер" label-for="manager" label-align="left">
           <manager-select :selected.sync="client.manager" />
         </b-form-group>
@@ -17,12 +15,13 @@
           <b-avatar :src="client.photo"></b-avatar>
           <b-form-textarea id="photo" v-model="client.photo"></b-form-textarea>
         </div>
+        <b-form-text class="text-sm-left text-center">Укажите ссылку на фото</b-form-text>
       </b-form-group>
 
       <template #footer>
         <div class="d-flex flex-gap-2 flex-sm-row flex-column justify-content-end">
           <b-button pill variant="outline-secondary" to="/">Отмена</b-button>
-          <b-button pill variant="primary" @click="save" :disabled="!formTouched">Сохранить</b-button>
+          <b-button pill variant="primary" @click="save" :disabled="!formTouched || !validated">Сохранить</b-button>
         </div>
       </template>
     </b-card>
@@ -31,6 +30,7 @@
 
 <script>
 import ManagerSelect from "../../components/managerSelect.vue";
+import NameInput from "../../components/nameInput.vue";
 import _isEqual from "lodash.isequal";
 
 export default {
@@ -38,6 +38,7 @@ export default {
   data() {
     return {
       client: null,
+      nameState: false,
     };
   },
   computed: {
@@ -49,6 +50,9 @@ export default {
     formTouched() {
       return !_isEqual({ ...this.client }, { ...this.originalClient });
     },
+    validated() {
+      return this.nameState
+    }
   },
   methods: {
     fetchClient() {
@@ -75,6 +79,7 @@ export default {
   },
   components: {
     ManagerSelect,
+    NameInput,
   },
 };
 </script>
