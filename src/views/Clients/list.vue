@@ -2,7 +2,7 @@
   <div class="clients">
     <h2 class="p-2 mb-0">Список клиентов</h2>
 
-    <table-filter :filter.sync="filter" />
+    <SimpleTableFilter :filter.sync="filter" />
 
     <b-table
       hover
@@ -11,7 +11,6 @@
       :per-page="perPage"
       :current-page="currentPage"
       :filter="filter"
-      :filter-function="filterFunction"
       class="clients-table"
       id="clients-table"
       show-empty
@@ -35,13 +34,13 @@
 </template>
 
 <script>
-import TableFilter from "../../components/TableFilter/index.vue";
+import SimpleTableFilter from "../../components/simpleTableFilter/index.vue";
 export default {
   name: "ClientsList",
   data() {
     return {
       totalRows: 1,
-      filter: {},
+      filter: null,
       currentPage: 1,
       perPage: 10,
       fields: [
@@ -76,8 +75,8 @@ export default {
     },
   },
   components: {
-    TableFilter,
-  },
+    SimpleTableFilter
+},
 };
 </script>
 
