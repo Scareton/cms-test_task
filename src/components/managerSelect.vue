@@ -1,11 +1,10 @@
 <template>
   <b-form-select
-    v-model="value"
+    :value="selected"
     :options="managers"
     value-field="id"
     text-field="name"
     @input="input"
-    label="Менеджер"
   ></b-form-select>
 </template>
 
@@ -13,11 +12,6 @@
 export default {
   name: "ManagerSelect",
   props: ["selected"],
-  data() {
-    return {
-      value: null,
-    };
-  },
   computed: {
     managers() {
       return [
