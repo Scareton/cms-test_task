@@ -1,6 +1,7 @@
 <template>
   <div class="client p-2 mt-sm-4 mx-auto">
     <b-card v-if="client" :header="`Клиент #${client.id}`">
+      <!-- Основная информация -->
       <div class="d-flex flex-sm-row flex-column flex-gap-2">
         <b-form-group class="flex-fill" label="ФИО" label-for="name" label-align="left">
           <b-form-input id="name" v-model="client.name"></b-form-input>
@@ -9,6 +10,14 @@
           <manager-select :selected.sync="client.manager" />
         </b-form-group>
       </div>
+
+      <!-- Аватар -->
+      <b-form-group label="Фото" label-for="photo" label-align="left">
+        <div class="d-flex flex-gap-2 flex-sm-row flex-column-reverse align-items-center">
+          <b-avatar :src="client.photo"></b-avatar>
+          <b-form-textarea id="photo" v-model="client.photo"></b-form-textarea>
+        </div>
+      </b-form-group>
 
       <template #footer>
         <div class="d-flex flex-gap-2 flex-sm-row flex-column justify-content-end">
@@ -22,7 +31,6 @@
 
 <script>
 import ManagerSelect from "../../components/managerSelect.vue";
-
 import _isEqual from "lodash.isequal";
 
 export default {

@@ -22,6 +22,10 @@
         @row-clicked="clickItem"
         responsive
       >
+        <template #cell(photo)="data">
+          <b-avatar :src="data.item.photo"></b-avatar>
+        </template>
+
         <template #cell(manager)="data">{{ data.item.manager.name }}</template>
 
         <template #emptyfiltered="{}">
@@ -54,6 +58,7 @@ export default {
       perPage: 10,
       fields: [
         { key: "id", label: "#", sortable: true },
+        { key: "photo", label: "Фото", sortable: true, width: "45px" },
         { key: "name", label: "ФИО", sortable: true },
         { key: "manager", label: "Менеджер", sortable: true },
       ],
