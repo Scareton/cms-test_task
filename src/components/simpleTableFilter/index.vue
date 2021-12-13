@@ -1,8 +1,6 @@
 <template>
-  <div class="p-2">
-    <div class="d-flex table-filter__wrapper">
-      <b-form-input v-model="value" @input="updateFilter" placeholder="Поиск..."></b-form-input>
-    </div>
+  <div class="d-flex table-filter__wrapper">
+    <b-form-input v-model="value" @input="updateFilter" placeholder="Поиск..."></b-form-input>
   </div>
 </template>
 
@@ -34,7 +32,6 @@ export default {
     @media (max-width: 767.98px)
       flex-direction: column
     & > *
-      max-width: 320px
       @media (max-width: 767.98px)
         max-width: unset
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="p-2">
+  <div class="client p-2 mt-sm-4 mx-auto">
     <b-card v-if="client" :header="`Клиент #${client.id}`">
       <div class="d-flex flex-sm-row flex-column flex-gap-2">
         <b-form-group
@@ -76,3 +76,8 @@ export default {
   },
 };
 </script>
+
+<style lang="sass">
+.client
+  max-width: 1024px
+</style>

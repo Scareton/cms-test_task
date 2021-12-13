@@ -1,11 +1,12 @@
 <template>
   <div class="p-2">
     <b-card no-body class="clients">
-      <h2 class="p-2 px-3 mb-0">Список клиентов</h2>
-
-      <div class="px-2">
+      <b-card-header
+        class="d-flex justify-content-between align-items-sm-center flex-sm-row flex-column flex-gap-2"
+      >
+        Список клиентов
         <SimpleTableFilter :filter.sync="filter" />
-      </div>
+      </b-card-header>
 
       <b-table
         hover
@@ -28,13 +29,15 @@
         </template>
       </b-table>
 
-      <b-pagination
-        v-model="currentPage"
-        :total-rows="totalRows"
-        :per-page="perPage"
-        aria-controls="clients-table"
-        class="clients-pagination justify-content-center"
-      ></b-pagination>
+      <b-card-footer>
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="totalRows"
+          :per-page="perPage"
+          aria-controls="clients-table"
+          class="clients-pagination justify-content-center mb-0"
+        ></b-pagination>
+      </b-card-footer>
     </b-card>
   </div>
 </template>
@@ -87,12 +90,13 @@ export default {
     },
     currentPage: {
       handler(page) {
-        if (this.$route.query.page !== page)
-        this.$store.state.tablePage = page;
-        this.$router.replace({
-          path: this.$route.path,
-          query: { page },
-        });
+        if (this.$route.query.page !== page) {
+          this.$store.state.tablePage = page;
+          this.$router.replace({
+            path: this.$route.path,
+            query: { page },
+          });
+        }
       },
     },
   },
