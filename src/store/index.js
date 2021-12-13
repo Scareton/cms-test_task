@@ -7,6 +7,11 @@ import managersModule from "./managers/index";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  state() {
+    return {
+      tablePage: 1,
+    }
+  },
   modules: {
     clients: clientsModule,
     managers: managersModule,

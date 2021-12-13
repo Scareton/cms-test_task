@@ -5,6 +5,7 @@
     value-field="id"
     text-field="name"
     @input="input"
+    id="manager"
   ></b-form-select>
 </template>
 

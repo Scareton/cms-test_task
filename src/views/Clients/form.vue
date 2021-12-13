@@ -2,13 +2,27 @@
   <div class="p-2">
     <b-card v-if="client" :header="`Клиент #${client.id}`">
       <div class="d-flex flex-sm-row flex-column flex-gap-2">
-        <b-form-input v-model="client.name" placeholder="ФИО"></b-form-input>
-        <manager-select :selected.sync="client.manager" />
+        <b-form-group
+          class="flex-fill"
+          label="ФИО"
+          label-for="name"
+          label-align="left"
+        >
+          <b-form-input id="name" v-model="client.name"></b-form-input>
+        </b-form-group>
+        <b-form-group
+          class="flex-fill"
+          label="Менеджер"
+          label-for="manager"
+          label-align="left"
+        >
+          <manager-select :selected.sync="client.manager" />
+        </b-form-group>
       </div>
 
       <template #footer>
-        <div class="d-flex flex-gap-2 flex-sm-row flex-column">
-          <b-button pill variant="outline-secondary" to="/">Вернуться назад</b-button>
+        <div class="d-flex flex-gap-2 flex-sm-row flex-column justify-content-end">
+          <b-button pill variant="outline-secondary" to="/">Отмена</b-button>
           <b-button pill variant="primary" @click="save" :disabled="!formTouched">Сохранить</b-button>
         </div>
       </template>

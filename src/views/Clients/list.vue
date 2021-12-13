@@ -75,12 +75,25 @@ export default {
       this.$router.push(`/${value.id}`);
     },
   },
+  created() {
+    this.currentPage = this.$route.query.page || this.$store.state.tablePage;
+  },
   watch: {
     clientsList: {
       handler(list) {
         this.totalRows = list.length;
       },
       immediate: true,
+    },
+    currentPage: {
+      handler(page) {
+        if (this.$route.query.page !== page)
+        this.$store.state.tablePage = page;
+        this.$router.replace({
+          path: this.$route.path,
+          query: { page },
+        });
+      },
     },
   },
   components: {
