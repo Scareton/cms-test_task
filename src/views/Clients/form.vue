@@ -21,7 +21,12 @@
       <template #footer>
         <div class="d-flex flex-gap-2 flex-sm-row flex-column justify-content-end">
           <b-button pill variant="outline-secondary" to="/">Отмена</b-button>
-          <b-button pill variant="primary" @click="save" :disabled="!formTouched || !validated">Сохранить</b-button>
+          <b-button
+            pill
+            variant="primary"
+            @click="save"
+            :disabled="!formTouched || !validated"
+          >Сохранить</b-button>
         </div>
       </template>
     </b-card>
@@ -38,7 +43,7 @@ export default {
   data() {
     return {
       client: null,
-      nameState: false,
+      nameState: true,
     };
   },
   computed: {
@@ -51,8 +56,8 @@ export default {
       return !_isEqual({ ...this.client }, { ...this.originalClient });
     },
     validated() {
-      return this.nameState
-    }
+      return this.nameState;
+    },
   },
   methods: {
     fetchClient() {
