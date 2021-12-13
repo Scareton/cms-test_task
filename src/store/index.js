@@ -14,7 +14,6 @@ export default new Vuex.Store({
   },
   actions: {
     createToast(args, { text, title }) {
-      console.log(text, title);
       this.$app.$root.$bvToast.toast(text, {
         title: title,
         autoHideDelay: 5000,
