@@ -59,7 +59,7 @@ export default {
       perPage: 10,
       fields: [
         { key: "id", label: "#", sortable: true },
-        { key: "photo", label: "Фото", sortable: true, width: "45px" },
+        { key: "photo", label: "Фото", sortable: false, width: "45px" },
         { key: "name", label: "ФИО", sortable: true },
         { key: "manager", label: "Менеджер", sortable: true },
       ],

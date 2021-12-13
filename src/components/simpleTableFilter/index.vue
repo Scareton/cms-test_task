@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex table-filter__wrapper">
+  <div class="flex-sm-row flex-column">
     <b-form-input v-model="value" @input="updateFilter" placeholder="Поиск..."></b-form-input>
   </div>
 </template>
@@ -23,15 +23,3 @@ export default {
   },
 };
 </script>
-
-<style lang="sass">
-.table-filter
-  &__wrapper
-    column-gap: 6px
-    row-gap: 6px
-    @media (max-width: 767.98px)
-      flex-direction: column
-    & > *
-      @media (max-width: 767.98px)
-        max-width: unset
-</style>
