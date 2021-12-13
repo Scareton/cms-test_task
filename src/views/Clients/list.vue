@@ -1,35 +1,41 @@
 <template>
-  <div class="clients">
-    <h2 class="p-2 mb-0">Список клиентов</h2>
+  <div class="p-2">
+    <b-card no-body class="clients">
+      <h2 class="p-2 px-3 mb-0">Список клиентов</h2>
 
-    <SimpleTableFilter :filter.sync="filter" />
+      <div class="px-2">
+        <SimpleTableFilter :filter.sync="filter" />
+      </div>
 
-    <b-table
-      hover
-      :items="clientsList"
-      :fields="fields"
-      :per-page="perPage"
-      :current-page="currentPage"
-      :filter="filter"
-      class="clients-table"
-      id="clients-table"
-      show-empty
-      @filtered="onFiltered"
-    >
-      <template #cell(manager)="data">{{ data.item.manager.name }}</template>
+      <b-table
+        hover
+        :items="clientsList"
+        :fields="fields"
+        :per-page="perPage"
+        :current-page="currentPage"
+        :filter="filter"
+        class="clients-table"
+        id="clients-table"
+        show-empty
+        @filtered="onFiltered"
+        @row-clicked="clickItem"
+        responsive
+      >
+        <template #cell(manager)="data">{{ data.item.manager.name }}</template>
 
-      <template #emptyfiltered="{}">
-        <h4>Клиенты не найдены</h4>
-      </template>
-    </b-table>
+        <template #emptyfiltered="{}">
+          <h4>Клиенты не найдены</h4>
+        </template>
+      </b-table>
 
-    <b-pagination
-      v-model="currentPage"
-      :total-rows="totalRows"
-      :per-page="perPage"
-      aria-controls="clients-table"
-      class="clients-pagination justify-content-center"
-    ></b-pagination>
+      <b-pagination
+        v-model="currentPage"
+        :total-rows="totalRows"
+        :per-page="perPage"
+        aria-controls="clients-table"
+        class="clients-pagination justify-content-center"
+      ></b-pagination>
+    </b-card>
   </div>
 </template>
 
@@ -65,6 +71,9 @@ export default {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
+    clickItem(value) {
+      this.$router.push(`/${value.id}`);
+    },
   },
   watch: {
     clientsList: {
@@ -75,8 +84,8 @@ export default {
     },
   },
   components: {
-    SimpleTableFilter
-},
+    SimpleTableFilter,
+  },
 };
 </script>
 
@@ -85,4 +94,5 @@ export default {
   &-table
     & td, & th
       text-align: left
+      cursor: pointer
 </style>

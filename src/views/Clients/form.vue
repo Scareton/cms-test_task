@@ -35,7 +35,7 @@ export default {
       );
     },
     formTouched() {
-      return !_isEqual({...this.client}, {...this.originalClient});
+      return !_isEqual({ ...this.client }, { ...this.originalClient });
     },
   },
   methods: {
